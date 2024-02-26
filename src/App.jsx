@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./App.css";
 
 function App() {
+
   const [rfc, setRfc] = useState("");
   const [isValid, setIsValid] = useState(false);
 
@@ -15,24 +15,37 @@ function App() {
   };
 
   return (
-    <>
-      <div>
-        <div>
-          <p>RFC: MAML</p>
-          <input
-            type="text"
-            value={rfc}
-            onChange={(e) => setRfc(e.target.value)}
-          />
-          <button onClick={handleValidate}>Validar</button>
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div className="bg-white text-center p-10 rounded shadow-md w-90">
+        <h1 className="text-3xl font-bold mb-4">Digite la combinacion del siguiente RFC: MAML</h1>
+        <input
+          type="text"
+          value={rfc}
+          onChange={(e) => setRfc(e.target.value)}
+          className="w-full p-2 border border-gray-300 rounded mb-4"
+        />
+        <button
+          onClick={handleValidate}
+          className="w-full bg-blue-500 text-white p-2 rounded"
+        >
+          Validar
+        </button>
+        <div className="mt-4 text-center text-lg">
+          {isValid ? (
+            <p className="text-green-500">RFC válido</p>
+          ) : (
+            <p className="text-red-500">RFC inválido</p>
+          )}
         </div>
-        <div>{isValid ? <p>RFC válido</p> : <p>RFC inválido</p>}</div>
-
-        <div>
-          <img src="src/assets/img/automata.png" alt="Autómata" />
+        <div className="mt-4">
+          <img
+            src="src/assets/img/automata.png"
+            alt="Autómata"
+            className="mx-auto"
+          />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
