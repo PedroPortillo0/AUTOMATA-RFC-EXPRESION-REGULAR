@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import Automata from "../src/components/graph"; 
 import Swal from 'sweetalert2'; 
 
 function App() {
 
   const [rfc, setRfc] = useState("");
-  const [isValid, setIsValid] = useState(false);
+  const setIsValid = React.useMemo(() => false, []);
 
   const validaRfc = (rfc) => {
     const pattern = /^P[OPR]{3}$/i;

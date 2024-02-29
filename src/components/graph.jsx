@@ -16,10 +16,10 @@ function Automata({ rfc }) {
     const generarAutomata = (cadena) => {
         d3.select(ref.current).select("svg").remove();
 
-        var estados = [];
-        var transiciones = [];
+        let estados = [];
+        let transiciones = [];
 
-        for (var i = 0; i <= cadena.length; i++) {
+        for (let i = 0; i <= cadena.length; i++) {
             estados.push("q" + i);
             if (i < cadena.length) {
                 transiciones.push({
@@ -30,19 +30,10 @@ function Automata({ rfc }) {
             }
         }
 
-        var svg = d3.select(ref.current).append("svg")
+        let svg = d3.select(ref.current).append("svg")
             .attr("width", 600)
             .attr("height", 150);
 
-        var nodes = svg.selectAll("circle")
-            .data(estados)
-            .enter().append("circle")
-            .attr("cx", function(d, i) { return i * 80 + 40; })
-            .attr("cy", 80)
-            .attr("r", 20)
-            .attr("stroke", "black")
-            .attr("stroke-width", 2)
-            .attr("fill", "white");
 
         svg.selectAll("text")
             .data(estados)
@@ -53,16 +44,6 @@ function Automata({ rfc }) {
             .attr("alignment-baseline", "middle")
             .text(function(d) { return d; });
 
-        var links = svg.selectAll(".link")
-            .data(transiciones)
-            .enter().append("line")
-            .attr("x1", function(d) { return (estados.indexOf(d.source) * 80 + 40) + 20; })
-            .attr("y1", 80)
-            .attr("x2", function(d) { return (estados.indexOf(d.target) * 80 + 40) - 20; })
-            .attr("y2", 80)
-            .attr("stroke", "black")
-            .attr("stroke-width", 2)
-            .attr("marker-end", "url(#arrowhead)");
 
         svg.selectAll("text.linkLabel")
             .data(transiciones)
@@ -76,9 +57,9 @@ function Automata({ rfc }) {
 
         svg.append("polygon")
             .attr("points", function() {
-                var x = 6;
-                var y = 90;
-                var size = 15;
+                let x = 6;
+                let y = 90;
+                let size = 15;
                 return (x) + "," + (y) + " " + (x - size / 2) + "," + (y - size) + " " + (x + size / 2) + "," + (y - size);
             })
             .attr("stroke", "black")
